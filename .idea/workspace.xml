@@ -75,8 +75,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userauth/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.052478135">
-              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.20991254">
+              <caret line="4" column="66" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -112,7 +112,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="135" />
-    <option name="y" value="105" />
+    <option name="y" value="294" />
     <option name="width" value="1167" />
     <option name="height" value="647" />
   </component>
@@ -456,7 +456,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="135" y="105" width="1167" height="647" extended-state="0" />
+    <frame x="135" y="294" width="1167" height="647" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18699911" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -556,8 +556,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/userauth/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.052478135">
-          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.20991254">
+          <caret line="4" column="66" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
           <folding />
         </state>
       </provider>
