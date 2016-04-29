@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'zhifoudb',
         'USER':'root',
-        'PASSWORD':'2898827027',
+        'PASSWORD':'',
         'HOST':'127.0.0.1',
         'PORT':3306,
         'OPTIONS': {
@@ -136,7 +136,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'liuchao_824@163.com'
-EMAIL_HOST_PASSWORD = 'akinnnuyohqzcmlx'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_SUBJECT_PREFIX = 'zhifou'
 EMAIL_USE_TLS = True
 
