@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block css %}
+    <title>知否首页</title>
+
+{% endblock %}
+
+{% block main %}
+    <div id="main-body">
+        <div class="row" id="index-main">
+            <div class="col-md-8 col-sm-8 col-lg-8">
+                <div id="content">
+                   <div id="messages">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                   </div>
+                    {% include 'includes/follow_question_list.html'%}
+                    <div class="div_hr"></div>
+                    {% include 'includes/follow_question_list.html'%}
+                    <div class="div_hr"></div>
+                    {% include 'includes/approval_answer.html' %}
+                    <div class="div_hr"></div>
+                    {% include 'includes/approval_answer.html' %}
+                    <div class="div_hr"></div>
+                    {% include 'includes/approval_answer.html' %}
+                    <div class="div_hr"></div>
+                    {% include 'includes/approval_answer.html' %}
+                    <div class="div_hr"></div>
+                    {% include 'includes/approval_answer.html' %}
+                    <div class="div_hr"></div>
+                    {% include 'includes/approval_answer.html' %}
+
+
+                    {% include 'includes/login.html' %}
+                    {% include 'includes/register.html' %}
+                    <div id="lala"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4  col-sm-4 hidden-xs">
+                <div id="side">
+                    {% include 'includes/rside.html' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

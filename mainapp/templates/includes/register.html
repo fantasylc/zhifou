@@ -1,0 +1,89 @@
+<div class="reg-popover">
+    <div class="register-title">
+          <a href="javascript:;" title="关闭" class="register-close"><span class="glyphicon glyphicon-remove"></span></a>
+          <h3>登录 是一种态度</h3>
+     </div>
+    <div class="register-form">
+    <form class="register" id='reg-form-id' name="registerform"  action="/userauth/login/" method="post">
+           {% csrf_token %}
+            <ul>
+                <li id="reg-error">
+
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
+                    <input class="register-email" id='reg-email' type="text" name="reg-email" placeholder="邮箱" required="required" />
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;
+                    <input class="register-pwd" type="password" id='reg-pwd1' name="reg-pwd1" placeholder="密码" required="required"/>
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;
+                    <input class="register-pwd" type="password" id='reg-pwd2' name="reg-pwd2" placeholder="确认密码" required="required"/>
+                </li>
+
+                <li>
+                    <input class="btn btn-primary btn-register" id='reg-submit' type="button" onclick="register()" name="reg-submit" value="注册" />
+                </li>
+            </ul>
+        </form>
+        </div>
+</div>
+<div class="popover-mask"></div>
+<script language="JavaScript" type="text/javascript">
+
+
+        function register(){
+
+            var email = $("#reg-email").val();
+            var password1 = $("#reg-pwd1").val();
+            var password2 = $("#reg-pwd2").val();
+            var re = /^[0-9a-zA-Z\_]+@([0-9a-zA-Z\_\-])+(.[a-zA-Z0-9\-\_])+/;
+
+            if(!re.test(email)){
+                $("#reg-error").html('邮箱不符合规范');
+              }
+            else if(!(password1 && password2)){
+                $("#reg-error").html('密码不能为空');
+            }
+            else if((password1.length<6) || (password2.length<6)){
+                $("#reg-error").html('密码不能少于6位！');
+            }
+            else if(!(password1 == password2)){
+                $("#reg-error").html('两次密码不一致');
+                $("reg-pwd1").value ='';
+                $("reg-pwd2").value ='';
+
+            }
+            else{
+                  $.ajax({
+                          type:'POST',
+                          url:'/userauth/register/',
+                          data:{"email":email,"password":password2},
+                          dataType:'json',
+                          beforeSend:function(xhr){
+                             xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+                          },
+                          success:function(data,textStatus){
+                             var status = data['status'];
+                              var message = data['message'];
+                              if(status == 'failure'){
+                                  $("#reg-error").html(message)
+                              }
+                              else{
+                                  alert(message);
+                                  location.reload();
+                              }
+
+                          },
+                          error:function(XMLHttpRequest, textStatus, errorThrown){
+                               alert('error');
+                               $('#lala').html(XMLHttpRequest.responseText);
+                          }
+                  });
+                  //alert('haha');
+
+                  }
+               }
+</script>

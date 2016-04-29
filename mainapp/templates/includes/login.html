@@ -1,0 +1,65 @@
+<div class="theme-popover">
+    <div class="login-title">
+          <a href="javascript:;" title="关闭" class="login-close"><span class="glyphicon glyphicon-remove"></span></a>
+          <h3>欢迎回来</h3>
+     </div>
+    <div class="login-form">
+    <form class="signin" id='login-form-id' name="loginform" method="post" role="form">
+            {% csrf_token %}
+            <ul>
+                <li id="login-error">
+
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
+                    <input class="login-email" id='login-email' type="text" name="login-email" placeholder="邮箱" required="required" />
+                </li>
+                <li>
+                    <span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;
+                    <input class="login-pwd" type="password" id='login-pwd' name="login-pwd" placeholder="密码" required="required"/>
+                </li>
+
+                <li>
+                    <button class="btn btn-primary btn-login" id='login-submit' onclick="login()" type="button" name="login-submit">登陆</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<div class="popover-mask"></div>
+<script language="JavaScript" type="text/javascript">
+
+    function login(){
+        email = $('#login-email').val();
+        password = $('#login-pwd').val();
+        if(email && password){
+            $.ajax({
+                type:'POST',
+                url:'/userauth/login/',
+                data:{'email':email,"password":password},
+                dataType:'json',
+                beforeSend:function(xhr){
+                    xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+                },
+                success: function(data,textStatus){
+                    var status = data['status'];
+                    var message = data['message'];
+                    if(status=="failure"){
+                        $('#login-error').html('&nbsp;&nbsp;'+message);
+                    }
+                    else{
+                        location.reload();
+                    }},
+                error:function(XMLHttpRequest, textStatus, errorThrown){
+
+                        document.write(XMLHttpRequest.responseText);
+
+                    }
+            });
+            return false;
+        }
+        else{
+            $('#login-error').html('&nbsp;&nbsp;邮箱和密码不能为空!');
+        }
+}
+</script>

@@ -37,7 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'testmmm',
+    'userauth',
+    'mainapp',
+
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,7 +60,7 @@ ROOT_URLCONF = 'zhifou.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),os.path.join(BASE_DIR,'mainapp/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -64,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',    #用来在模板中使用上传文件
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -85,6 +92,9 @@ DATABASES = {
         'PASSWORD':'2898827027',
         'HOST':'127.0.0.1',
         'PORT':3306,
+        'OPTIONS': {
+         "init_command": "SET foreign_key_checks = 0;",
+         },
     }
 }
 
@@ -102,14 +112,21 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/auth/login/'
+LOGOUT_URL = '/auth/logout/'
 
-
-
+AUTH_USER_MODEL='userauth.User'
+AUTHENTICATION_BACKENDS = ('userauth.customauth.MyBackend','django.contrib.auth.backends.ModelBackend',)
+#'django.contrib.auth.backends.ModelBackend',
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'collected_static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 
 #media files
 MEDIA_URL = '/media/'
@@ -119,7 +136,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'liuchao_824@163.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'akinnnuyohqzcmlx'
 EMAIL_SUBJECT_PREFIX = 'zhifou'
 EMAIL_USE_TLS = True
 

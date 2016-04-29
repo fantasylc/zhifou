@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default nav-zf navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> 首页
+            </a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+           <ul class="nav navbar-nav navbar-left">
+             <li><a href="">话题</a></li>
+             <li><a href="">热门</a></li>
+
+           </ul>
+           <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                 <input type="text" class="form-control" placeholder="看看有没有你想要的">
+              </div>
+              <button type="submit" class="btn btn-default navbar-btn">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>
+           </form>
+           <ul class=" nav navbar-nav navbar-right nav-zf">
+               <li><button type="button" class="btn btn-default navbar-btn nav-btn">提问</button></li>
+
+               {% if not request.user.is_authenticated %}
+               <li><a class="nav-login" href="javascript:;" >登录</a></li>
+               <li><a class="nav-register" href="javascript:;" >注册</a></li>
+               {% else %}
+               <li class="dropdown nav_me dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="//?next={{ request.path }}"><img class="ava" src="/static/img/ava.jpg"/>&nbsp;&nbsp;Fantasy</a>
+                   <ul class="dropdown-menu nav-drop-menu">
+                       <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;主页</a></li>
+                       <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></span>&nbsp;&nbsp;消息</a></li>
+                       <li><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;设置</a></li>
+                       <li><a id = 'logout' href="javascript:;"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;退出</a></li>
+
+                   </ul>
+               </li>
+               {% endif %}
+           </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+<</nav>
